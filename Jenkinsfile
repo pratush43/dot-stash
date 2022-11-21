@@ -8,6 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'dotnet build'
+              stash includes: 'docs/_framework/_bin/*DotnetPwaSample*.dll', name: 'build', useDefaultExcludes: false
             }
         }
     }
