@@ -14,7 +14,7 @@ pipeline {
       stage('publish'){
         steps{
         unstash 'build'
-          sh 'docker build -t dotnet:latest .'
+          def customImage = docker.build("my-image:${env.BUILD_ID}")
         }
       }
     }
