@@ -11,12 +11,10 @@ pipeline {
               stash includes: 'docs/_framework/_bin/*DotnetPwaSample*.dll', name: 'build', useDefaultExcludes: false
             }
         }
-      stage('publish'){
-        steps{
-        unstash 'build'
-          def customImage = docker.build("my-image:${env.BUILD_ID}")
-        }
-      }
+      node {
+     def customImage = docker.build("my-image:${env.BUILD_ID}")
+    
+}
     }
         post {
         always {
