@@ -11,6 +11,12 @@ pipeline {
               stash includes: 'docs/_framework/_bin/*DotnetPwaSample*.dll', name: 'build', useDefaultExcludes: false
             }
         }
+      stage('publish'){
+        steps{
+        unstash 'build'
+          sh 'docker build -t dotnet:latest .'
+        }
+      }
     }
         post {
         always {
