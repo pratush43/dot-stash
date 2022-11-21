@@ -13,7 +13,11 @@ pipeline {
             }
         }
       stage('publish'){
-        agent any
+        agent {
+          node{
+          label 'builder'
+          }
+        }
         steps {
          unstash 'build'   
           script {
