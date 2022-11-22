@@ -27,7 +27,7 @@ pipeline {
 
         }
       
-    }
+    
   stage("push image"){
            agent any
       steps {
@@ -36,6 +36,7 @@ pipeline {
       }
 
         }
+  }
       
     }
       
