@@ -12,6 +12,14 @@ pipeline {
               archiveArtifacts artifacts: 'docs/_framework/_bin/*.dll'
             }
         }
+        stage("docker image"){
+          agent docker1
+          steps(
+            def app
+            app = docker.build("pratush43/node")  
+          )
+
+        }
     }
       
 }
