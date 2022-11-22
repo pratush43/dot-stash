@@ -20,7 +20,7 @@ pipeline {
         stage("docker image"){
            agent {
     node{
-    label ('builder1' || 'builder2')
+    label 'builder2'
     } 
   }
       steps {
