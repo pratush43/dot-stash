@@ -13,7 +13,7 @@ pipeline {
             }
         }
         stage("docker image"){
-          agent docker1
+          agent any
           steps{
             script{
             def app
