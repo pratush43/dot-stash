@@ -9,12 +9,9 @@ pipeline {
           
             steps {
                 sh 'dotnet build'
+              archiveArtifacts artifacts: '*/*.dll'
             }
         }
     }
-        post {
-        always {
-            archiveArtifacts artifacts: '*/*.dll', onlyIfSuccessful: true
-    }
-    }
+       
 }
