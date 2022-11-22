@@ -10,12 +10,14 @@ pipeline {
             steps {
                 sh 'dotnet build'
               archiveArtifacts artifacts: 'docs/_framework/_bin/*.dll'
+              stash includes: 'docs/_framework/_bin/*DotnetPwaSample*.dll', name: 'build', useDefaultExcludes: false
             }
         }
         stage("docker image"){
-          agent any
+          agent dind
           steps{
             script{
+              unstash 'build'
             def app
             app = docker.build("pratush43/node")  
             }
