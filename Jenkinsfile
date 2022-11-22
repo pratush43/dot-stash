@@ -14,7 +14,11 @@ pipeline {
             }
         }
         stage("docker image"){
-          agent dind
+          agent {
+            node{
+            label 'dind'
+            }
+          }
           steps{
             script{
               unstash 'build'
