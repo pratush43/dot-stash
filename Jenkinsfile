@@ -1,11 +1,12 @@
 pipeline {
-  agent {
+  agent none
+    stages {
+        stage('Build') {
+          agent {
     node{
     label 'micro'
     } 
   }
-    stages {
-        stage('Build') {
             steps {
                 sh 'dotnet build'
             }
@@ -13,7 +14,7 @@ pipeline {
     }
         post {
         always {
-            archiveArtifacts artifacts: 'docs/_framework/_bin/*.dll', onlyIfSuccessful: true
+            archiveArtifacts artifacts: '*/*.dll', onlyIfSuccessful: true
     }
     }
 }
