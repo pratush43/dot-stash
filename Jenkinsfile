@@ -2,7 +2,6 @@ pipeline {
   environment {
     registry = "pratush43/dock"
     registryCredential = 'dockerhub'
-    dockerimage= ''
   }
   agent none
     stages {
@@ -21,16 +20,12 @@ pipeline {
         stage("docker image"){
            agent any
       steps {
-        script{
         unstash 'build'
-      	dockerImage = docker.build registry + ":$BUILD_NUMBER"
-      }
+      	sh 'docker build -t $registry:latest .'
       }
 
         }
-      
-    
-  stage("push image"){
+         stage("push image"){
            agent any
       steps {
         script{ 
@@ -41,7 +36,6 @@ pipeline {
 
         }
   }
-      
     }
       
 }
