@@ -19,12 +19,10 @@ pipeline {
         }
         stage("docker image"){
           agent any
-          steps{
-            script{
-              unstash 'build'
-            docker.build registry + ":$BUILD_NUMBER"  
-            }
-        }
+      steps {
+        unstash 'build'
+      	sh 'docker build -t $registry:latest .'
+      }
 
         }
     }
