@@ -9,7 +9,8 @@ pipeline {
           
             steps {
                 sh 'dotnet build >> abc.txt'
-              archiveArtifacts artifacts: '*/*.dll'
+             sh  "file=$(grep ".*\.dll$" abc.txt | cut -d ' ' -f 3)"
+              archiveArtifacts artifacts: 'docs/_framework/*/$file.dll'
             }
         }
     }
