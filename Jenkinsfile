@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
           
             steps {
-                sh 'dotnet build'
+                sh 'dotnet build >> abc.txt'
               archiveArtifacts artifacts: '*/*.dll'
             }
         }
