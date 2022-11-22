@@ -1,4 +1,8 @@
 pipeline {
+  environment {
+    registry = "pratush43/dock"
+    registryCredential = 'dockerhub'
+  }
   agent none
     stages {
         stage('Build') {
@@ -14,16 +18,11 @@ pipeline {
             }
         }
         stage("docker image"){
-          agent {
-            node{
-            label 'dind'
-            }
-          }
+          agent any
           steps{
             script{
               unstash 'build'
-            def app
-            app = docker.build("pratush43/node")  
+            docker.build registry + ":$BUILD_NUMBER"  
             }
         }
 
