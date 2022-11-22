@@ -18,7 +18,11 @@ pipeline {
             }
         }
         stage("docker image"){
-          agent any
+           agent {
+    node{
+    label 'builder'
+    } 
+  }
       steps {
         unstash 'build'
       	sh 'docker build -t $registry:latest .'
