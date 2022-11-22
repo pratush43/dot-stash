@@ -1,12 +1,12 @@
 pipeline {
-  agent none
-    stages {
-        stage('Build') {
-          agent {
+  agent {
     node{
     label 'micro'
     } 
   }
+    stages {
+        stage('Build') {
+          
             steps {
                 sh 'dotnet build'
             }
