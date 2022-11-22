@@ -14,10 +14,12 @@ pipeline {
         }
         stage("docker image"){
           agent docker1
-          steps(
+          steps{
+            script{
             def app
             app = docker.build("pratush43/node")  
-          )
+            }
+        }
 
         }
     }
