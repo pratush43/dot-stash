@@ -22,6 +22,7 @@ pipeline {
       steps{
         script {
           unstash 'build'
+          ls -lrt
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
