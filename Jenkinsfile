@@ -20,23 +20,11 @@ pipeline {
         stage("docker image"){
            agent any
       steps{
-        script {
-          unstash 'build'
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
+        unstash 'build'
+        sh 'ls -lrt'
       }
 
         }
-         stage("push image"){
-           agent any
-      steps{
-         script {
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-  }
     }
       
 }
