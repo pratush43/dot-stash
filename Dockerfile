@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
+FROM okteto/dotnetcore:6
 WORKDIR /DotnetPwaSample
 COPY . /App
 EXPOSE 80
